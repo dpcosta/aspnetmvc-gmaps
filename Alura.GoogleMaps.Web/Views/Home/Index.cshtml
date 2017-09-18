@@ -1,0 +1,67 @@
+﻿@model Alura.GoogleMaps.Web.Models.Coordenada
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps</title>
+    <link type="text/css" rel="stylesheet" href="~/Content/bootstrap.css" />
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+
+            <div>
+                <h1>Google Maps com ASP.NET MVC</h1>
+                <p>Psenectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui in turpis pulvinar facilisis. Ut felis.</p>
+            </div>
+
+        </div>
+        <div style="height:500px;">
+            <div id="mapa_canvas" >
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDfYaswgGQytvJJxRIXdw99o0eUZFml6LM">
+    </script>
+    <script type="text/javascript" language="javascript">
+
+        $(function () {
+
+            function initMap() {
+
+                var location = new google.maps.LatLng(@Model.Latitude, @Model.Longitude);
+
+                var mapCanvas = document.getElementById('mapa_canvas');
+                var mapOptions = {
+                    center: location,
+                    zoom: 16,
+                    panControl: false,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+                var map = new google.maps.Map(mapCanvas, mapOptions);
+                $(mapCanvas).height("100%");
+
+            }
+
+            google.maps.event.addDomListener(window, 'load', initMap);
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
